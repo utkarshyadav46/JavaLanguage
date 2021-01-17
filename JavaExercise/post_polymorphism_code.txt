@@ -1,0 +1,642 @@
+SUPER KEYWORD ======================================
+public class EventRegistrationTest {
+    public static void main(String[] args) {
+        SingleEventRegistration se1 = new SingleEventRegistration("Jenny", "Sing&Win", 1);
+        se1.registerEvent();
+        SingleEventRegistration se2 = new SingleEventRegistration("Hudson", "PlayAway", 2);
+        se2.registerEvent();
+        TeamEventRegistration team = new TeamEventRegistration("Aura", "ShakeALeg", 5, 1);
+        team.registerEvent();
+    }
+}
+
+class EventRegistration {
+    String name;
+    String nameOfEvent;
+    double registrationFee;
+
+    public EventRegistration(String name, String nameOfEvent) {
+        this.name = name;
+        this.nameOfEvent = nameOfEvent;
+    }
+
+    void registerEvent() {
+
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNameOfEvent() {
+        return nameOfEvent;
+    }
+
+    public void setNameOfEvent(String nameOfEvent) {
+        this.nameOfEvent = nameOfEvent;
+    }
+
+    public double getRegistrationFee() {
+        return registrationFee;
+    }
+
+    public void setRegistrationFee(double registrationFee) {
+        this.registrationFee = registrationFee;
+    }
+}
+
+class SingleEventRegistration extends EventRegistration {
+int participantNo;
+    public SingleEventRegistration(String name, String nameOfEvent, int participantNo) {
+        super(name, nameOfEvent);
+        this.participantNo = participantNo;
+    }
+
+    public int getParticipantNo() {
+        return participantNo;
+    }
+
+    public void setParticipantNo(int participantNo) {
+        this.participantNo = participantNo;
+    }
+
+    @Override
+    void registerEvent() {
+        int fee = 0;
+        switch (nameOfEvent) {
+            case "ShakeALeg": fee = 100;
+            break;
+            case "Sing&Win": fee = 150;
+            break;
+            case "PlayAway": fee = 130;
+            break;
+        }
+        if (fee == 0) {
+            System.out.println("Invalid event selected");
+            return;
+        }
+        setRegistrationFee(fee);
+        System.out.println("Fee for registration is " + fee);
+    }
+}
+
+class TeamEventRegistration extends EventRegistration {
+    int noOfParticipants;
+    int teamNo;
+
+    public TeamEventRegistration(String name, String nameOfEvent, int noOfParticipants, int teamNo ) {
+        super(name, nameOfEvent);
+        this.noOfParticipants = noOfParticipants;
+        this.teamNo = teamNo;
+    }
+
+    @Override
+    void registerEvent() {
+        int fee = 0;
+        switch (nameOfEvent) {
+            case "ShakeALeg": fee = 50;
+                break;
+            case "Sing&Win": fee = 60;
+                break;
+            case "PlayAway": fee = 100;
+                break;
+            case "Actathon": fee = 80;
+            break;
+        }
+        if (fee == 0) {
+            System.out.println("Invalid event selected");
+            return;
+        }
+        setRegistrationFee(fee * noOfParticipants);
+        System.out.println("Fee for registration is " + getRegistrationFee());
+    }
+
+    public int getNoOfParticipants() {
+        return noOfParticipants;
+    }
+
+    public void setNoOfParticipants(int noOfParticipants) {
+        this.noOfParticipants = noOfParticipants;
+    }
+
+    public int getTeamNo() {
+        return teamNo;
+    }
+
+    public void setTeamNo(int teamNo) {
+        this.teamNo = teamNo;
+    }
+}
+
+STATIC ===========================================
+EX-1
+public class LoanCounter {
+    public static void main(String[] args) {
+        Loan loan = new Loan();
+        Loan loan2 = new Loan();
+        Loan loan3 = new Loan();
+        Loan loan4 = new Loan();
+        System.out.println("Total no of loans sanctioned " + Loan.getLoanCounter());
+    }
+}
+
+class Loan {
+    static int loanCounter = 0;
+
+    int loanNo;
+    int accountNo;
+    int customerNo;
+    float loanAmount;
+    int loanDuration;
+    float interest;
+
+    public Loan(int accountNo, int customerNo, float loanAmount, int loanDuration, float interest) {
+        this();
+        this.accountNo = accountNo;
+        this.customerNo = customerNo;
+        this.loanAmount = loanAmount;
+        this.loanDuration = loanDuration;
+        this.interest = interest;
+    }
+
+    public Loan() {
+        loanCounter++;
+    }
+
+    public static int getLoanCounter() {
+        return loanCounter;
+    }
+    
+    public int getLoanNo() {
+        return loanNo;
+    }
+
+    public void setLoanNo(int loanNo) {
+        this.loanNo = loanNo;
+    }
+
+    public int getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(int accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public int getCustomerNo() {
+        return customerNo;
+    }
+
+    public void setCustomerNo(int customerNo) {
+        this.customerNo = customerNo;
+    }
+
+    public float getLoanAmount() {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(float loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public int getLoanDuration() {
+        return loanDuration;
+    }
+
+    public void setLoanDuration(int loanDuration) {
+        this.loanDuration = loanDuration;
+    }
+
+    public float getInterest() {
+        return interest;
+    }
+
+    public void setInterest(float interest) {
+        this.interest = interest;
+    }
+}
+
+
+EX-2
+public class EmployeeRating {
+    public static void main(String[] args) {
+        Employee e1 = new Employee(98);
+        Employee e2 = new Employee(57);
+        Employee e3 = new Employee(44);
+        System.out.println("Rating for employee 1 is " + e1.calculatePerformance());
+        System.out.println("Rating for employee 2 is " + e2.calculatePerformance());
+        System.out.println("Rating for employee 3 is " + e3.calculatePerformance());
+    }
+}
+
+class PerformanceRating {
+    static final int Outstanding = 5;
+    static final int Good = 4;
+    static final int Average = 3;
+    static final int Poor = 2;
+}
+class Employee {
+    int points;
+    Employee(int points) {
+        this.points = points;
+    }
+
+    public int calculatePerformance() {
+        if (points >= 80) {
+            return PerformanceRating.Outstanding;
+        } else if (points >= 60) {
+            return PerformanceRating.Good;
+        } else if (points >= 50) {
+            return PerformanceRating.Average;
+        }
+        return PerformanceRating.Poor;
+    }
+}
+
+VARARGS ============================================
+public class VarargsDemo {
+    public static void main(String[] args) {
+        displayList(1,2,3,4,5);
+        maxOfList(1,2,4,5,6);
+        sortList(5,8,3,8,2);
+        averageList(1,2,3,4,5,6,7,8);
+    }
+
+    public static void displayList(int... list) {
+        for (int a: list) {
+            System.out.print(a + " ");
+        }
+        System.out.println();
+    }
+
+    public static void maxOfList(int... list) {
+        int max = list[0];
+        for (int a: list) {
+            if (a > max) max = a;
+        }
+        System.out.println("Max of list is " + max);
+    }
+
+    public static void sortList(int... list) {
+        Arrays.sort(list);
+        System.out.println("List after sorting is:");
+        for (int a: list) {
+            System.out.print(a + " ");
+        }
+        System.out.println();
+    }
+
+    public static void averageList(int... list) {
+        int sum = 0;
+        for (int a: list) {
+            sum += a;
+        }
+        System.out.println("Average of the list elements is " + (double)(sum / list.length));
+    }
+}
+
+ENUM ============================================
+
+public class EnumTest {
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.setStudentId(1000);
+        s1.setName("Alvin");
+        s1.setTotalMarks(280);
+        s1.calculateGrade();
+        s1.calculateScholarshipAmount();
+        System.out.println("Student Details:");
+        System.out.println("Student Id: " + s1.getStudentId());
+        System.out.println("Student Name: " + s1.getName());
+        System.out.println("Student grade:  " + s1.getGrade());
+        System.out.println("Scholarship amount: " + s1.getScholarshipAmount());
+    }
+}
+enum Grade {
+    A,B,C,D,E;
+}
+class Student {
+    int studentId;
+    String name;
+    Grade grade;
+    int scholarshipAmount;
+    int totalMarks;
+
+    void calculateGrade() {
+        if (totalMarks >= 250) {
+            grade = Grade.A;
+        } else if (totalMarks >= 200 && totalMarks < 250) {
+            grade = Grade.B;
+        } else if (totalMarks >= 175 && totalMarks < 200) {
+            grade = Grade.C;
+        } else if (totalMarks >= 150 && totalMarks < 175) {
+            grade = Grade.D;
+        } else
+            grade = Grade.E;
+    }
+
+    void calculateScholarshipAmount() {
+        switch (grade) {
+            case A:
+                scholarshipAmount = 5000;
+                break;
+            case B:
+                scholarshipAmount = 4000;
+                break;
+            case C:
+                scholarshipAmount = 3000;
+                break;
+            case D:
+                scholarshipAmount = 2000;
+                break;
+            default:
+                scholarshipAmount = 0;
+        }
+    }
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
+    public int getScholarshipAmount() {
+        return scholarshipAmount;
+    }
+
+    public void setScholarshipAmount(int scholarshipAmount) {
+        this.scholarshipAmount = scholarshipAmount;
+    }
+
+    public int getTotalMarks() {
+        return totalMarks;
+    }
+
+    public void setTotalMarks(int totalMarks) {
+        this.totalMarks = totalMarks;
+    }
+}
+
+ABSTRACT CLASS ====================================
+
+public abstract class RRPaymentServices {
+    double balance;
+    int customerId;
+
+    public RRPaymentServices(double balance, int customerId) {
+        this.balance = balance;
+        this.customerId = customerId;
+    }
+
+    abstract void payBill(double amount);
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+}
+
+class ShoppingPayment extends RRPaymentServices{
+    static int counter = 1000;
+    String paymentId;
+
+    ShoppingPayment(double balance, int customerId) {
+        super(balance, customerId);
+
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    @Override
+    void payBill(double amount) {
+        if (amount == balance) {
+            paymentId = "S" + counter;
+            counter++;
+            System.out.println("Congratulations! Your payment of Rs. " + amount + " is successful with paymentId " + paymentId);
+        } else if (amount > balance) {
+            System.out.println("Excess amount entered! Please try again.");
+        } else {
+            System.out.println("Insufficient amount entered! Please try again.");
+        }
+    }
+}
+
+class CreditCardPayment extends RRPaymentServices {
+    static int counter = 1000;
+    String paymentId;
+    double cashBack;
+    double balanceDue;
+
+    CreditCardPayment(double balance, int customerId) {
+        super(balance, customerId);
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public double getCashBack() {
+        return cashBack;
+    }
+
+    public double getBalanceDue() {
+        return balanceDue;
+    }
+
+    public void displayDetails(double amount) {
+        System.out.println("Congratulations! You have successfully made a payment of Rs. " + amount + " . Payment details are:");
+        System.out.println("Customer ID :" + getCustomerId());
+        System.out.println("Payment ID: " + getPaymentId());
+        System.out.println("Previous Due: Rs." + getBalance());
+        System.out.println("Remaining Due: Rs." + getBalanceDue());
+        System.out.println("Cashback wallet Balance: Rs." + getCashBack());
+    }
+    @Override
+    void payBill(double amount) {
+        if (amount > balance) {
+            cashBack = amount - balance;
+        } else if (amount < balance) {
+            balanceDue = balance - amount;
+        }
+        paymentId = "C" + counter;
+        counter++;
+        displayDetails(amount);
+    }
+}
+
+public class RRPaymentServicesTest {
+    public static void main(String[] args) {
+        CreditCardPayment creditCardPayment = new CreditCardPayment(10000.23, 5001);
+        creditCardPayment.payBill(15000);
+        CreditCardPayment creditCardPayment2 = new CreditCardPayment(10000.23, 5001);
+        creditCardPayment2.payBill(0);
+        ShoppingPayment shoppingPayment = new ShoppingPayment(10000.23, 5001);
+        shoppingPayment.payBill(5000);
+        ShoppingPayment shoppingPayment2 = new ShoppingPayment(10000.23, 5001);
+        shoppingPayment2.payBill(10000.23);
+    }
+}
+
+INTERFACE =====================================
+public interface DataProvider {
+    int totalMaximumMarks = 8000;
+    void calcPercentage();
+}
+
+public class InterfaceDemo {
+    public static void main(String[] args) {
+        Intern intern = new Intern(3000, 500);
+        intern.calcPercentage();
+        Trainee trainee = new Trainee(9000);
+        trainee.calcPercentage();
+    }
+}
+
+class Intern implements DataProvider {
+    int marksSecured;
+    int graceMarks;
+
+    public Intern(int marksSecured, int graceMarks) {
+        this.marksSecured = marksSecured;
+        this.graceMarks = graceMarks;
+    }
+
+    @Override
+    public void calcPercentage() {
+        if (marksSecured + graceMarks > totalMaximumMarks) {
+            System.out.println("Please enter correct marks");
+            return;
+        }
+        double percentage = (double)(marksSecured + graceMarks) / totalMaximumMarks * 100.0;
+        System.out.println("Percentage obtained is " + percentage);
+    }
+}
+
+class Trainee implements DataProvider {
+    int marksSecured;
+
+    public Trainee(int marksSecured) {
+        this.marksSecured = marksSecured;
+    }
+
+    @Override
+    public void calcPercentage() {
+        if (marksSecured > totalMaximumMarks) {
+            System.out.println("Please enter correct marks");
+            return;
+        }
+        double percentage = (double)(marksSecured) / totalMaximumMarks * 100.0;
+        System.out.println("Percentage obtained is " + percentage);
+    }
+}
+
+ACCESS MODIFIER =================================
+
+public class InfyTV {
+    private String photographer;
+    private String newsReporter;
+    private String correspondent;
+
+    public String getPhotographer() {
+        return photographer;
+    }
+
+    public void setPhotographer(String photographer) {
+        this.photographer = photographer;
+    }
+
+    public String getNewsReporter() {
+        return newsReporter;
+    }
+
+    public void setNewsReporter(String newsReporter) {
+        this.newsReporter = newsReporter;
+    }
+
+    public String getCorrespondent() {
+        return correspondent;
+    }
+
+    public void setCorrespondent(String correspondent) {
+        this.correspondent = correspondent;
+    }
+
+    public void documentaryFilm() {
+        System.out.println("A hundred years ago there was 100,000 tigers in the world. Today there are as few as 3,200. Why are tigers disappearing?......\nBy Correspondent: "
+        + correspondent + "\nPhotographer: " + photographer + "\nNews Reporter: " + newsReporter);
+    }
+}
+
+public class InfyTVTest {
+    public static void main(String[] args) {
+        InfyTV itv = new InfyTV();
+        itv.setCorrespondent("Kimberley");
+        itv.setNewsReporter("Hudson");
+        itv.setPhotographer("Joshua");
+
+        itv.documentaryFilm();
+    }
+}
+
+
+INNER CLASS =======================================
+
+public class Football {
+    String leagueName;
+    String coachName;
+
+    Football(String leagueName, String coachName) {
+        this.leagueName = leagueName;
+        this.coachName = coachName;
+    }
+    class Player {
+        String name;
+        int phone;
+        Player(String name, int phone) {
+            this.name = name;
+            this.phone = phone;
+        }
+
+        public void printClubDetails() {
+            System.out.println("Player Name: " + name);
+            System.out.println("League: " + leagueName);
+            System.out.println("Coached by: " + coachName);
+        }
+    }
+
+    public static void main(String[] args) {
+        Football fb = new Football("league 1", "Jane Doe");
+        Player player = fb.new Player("Pete Doe", 123456);
+        player.printClubDetails();
+        player.name = "Bruce";
+        player.printClubDetails();
+    }
+}

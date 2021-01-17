@@ -1,0 +1,1522 @@
+Exercise 1 Class and Object
+
+class Student{
+    	int studentId;
+    	String name;
+    	float qualifyingExamMarks;
+    	char residentialStatus;
+    	int yearOfEngg;
+
+    	int getStudentId() {
+		return this.studentId;
+    	}
+
+    	void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
+    	String getName() {
+		return this.name;
+	}
+
+    	void setName(String name) {
+		this.name = name;
+	}
+
+    	float getQualifyingExamMarks() {
+		return this.qualifyingExamMarks;
+	}
+
+    	void setQualifyingExamMarks(float qualifyingExamMarks) {
+		this.qualifyingExamMarks = qualifyingExamMarks;
+	}
+
+    	char getResidentialStatus() {
+		return this.residentialStatus;
+	}
+
+    	void setResidentialStatus(char residentialStatus) {
+		this.residentialStatus = residentialStatus;
+	}
+
+    	int getYearOfEngg() {
+		return this.yearOfEngg;
+	}
+
+    	void setYearOfEngg(int yearOfEngg) {
+		this.yearOfEngg = yearOfEngg;
+	}
+}
+
+public class StudentTester{
+   
+   	public static void main(String[] args){
+      		
+		Student student1 = new Student();
+		student1.setStudentId(1001);
+		student1.setName("Jacob");
+		student1.setQualifyingExamMarks(80);
+		student1.setResidentialStatus('H');
+		student1.setYearOfEngg(3);
+	
+		System.out.println("Student Name       : " + student1.getName());
+		System.out.println("Student Id         : " + student1.getStudentId());
+		System.out.println("Qualifying marks   : " + student1.getQualifyingExamMarks());
+		System.out.println("Year of Engineering: " + student1.getYearOfEngg());
+		System.out.println("Residential Status : " + (student1.getResidentialStatus()=='H'?"Hostellers":"Day Scholar"));
+	
+		Student student2 = new Student();
+		student2.setStudentId(1002);
+		student2.setName("Peter");
+		student2.setQualifyingExamMarks(83);
+		student2.setResidentialStatus('D');
+		student2.setYearOfEngg(2);
+	
+		System.out.println("Student Name       : " + student2.getName());
+		System.out.println("Student Id         : " + student2.getStudentId());
+		System.out.println("Qualifying marks   : " + student2.getQualifyingExamMarks());
+		System.out.println("Year of Engineering: " + student2.getYearOfEngg());
+		System.out.println("Residential Status : " + student2.getResidentialStatus());
+	
+	}
+}
+
+***********************************************************************
+Exercise 2.1 Data Type
+
+class Rectangle{
+	int length, breadth;
+	
+	int getLength() {
+		return this.length;
+	}
+	void setLength(int length) {
+		this.length = length;
+	}
+	
+	void setBreadth(int breadth) {
+		this.breadth = breadth;
+	}
+	
+	int getBreadth() {
+		return this.breadth;
+	}
+}
+
+************************************************************************
+Exercise 2.2 Data Type
+
+class Rectangle{
+	int length, breadth;
+	
+	int getLength() {
+		return this.length;
+	}
+	void setLength(int length) {
+		this.length = length;
+	}
+	
+	void setBreadth(int breadth) {
+		this.breadth = breadth;
+	}
+	
+	int getBreadth() {
+		return this.breadth;
+	}
+
+	void calculatePerimeter() {
+		System.out.println(2*(this.length + this.breadth));
+	}
+}
+
+class PerimeterCalculator {
+	Rectangle rect = new Rectangle();
+  	rect.setLength(10);
+  	rect.setBreadth(12);
+	rect.calculatePerimeter();
+}
+
+*****************************************************************************
+Exercise 4 Type Casting
+
+public class RetailStore {
+
+	int billId;
+	int customerId;
+	int discount;
+	double billAmount;
+
+	public double discountedBillAmount(){
+		return this.billAmount - this.billAmount * this.discount/100;
+	}
+
+	public static void main(String[] args) {
+
+		RetailStore retalStore1 = new RetailStore ();
+		retalStore1 .billAmount = 199.99;
+		retalStore1 .billId = 1001;
+		retalStore1 .discount=2;
+		retalStore1 .customerId=101;
+
+		System.out.println("Discounted amount = " + retalStore1.discountedBillAmount());
+
+		RetailStore retalStore2 = new RetailStore ();
+		retalStore2 .billAmount=210.5;
+		retalStore2 .billId=1002;
+		retalStore2 .discount=4;
+		retalStore2 .customerId=102;
+
+		System.out.println("Discounted amount = " + retalStore2.discountedBillAmount());
+
+	}
+}
+
+*************************************************************************
+Exercise 5.1 Conditional Statement
+
+public class Solution {
+	public static void main(String[] args){
+		int a = 27;
+		int temp = a, rem = 0, rev = 0;
+
+		while(temp>0) {
+			rem = temp%10;
+			rev = rev*10 + rem;
+			temp = temp/10;
+		}
+
+		System.out.println("Reverse : " + rev);
+		temp = a;
+		rev = 0;
+		do {
+			rem = temp%10;
+			rev = rev*10 + rem;
+			temp= temp/10;
+		}while(temp>0);
+		
+		System.out.println("Reverse : " + rev);
+		temp = a;
+		rev = 0;
+		for(temp = a; temp > 0; temp /= 10) {
+
+			rem = temp%10;
+			rev = rev*10 + rem;
+		}
+		
+		System.out.println("Reverse : " + rev);
+	}
+}
+
+**************************************************************************
+Exercise 5.2 Conditional Statement 
+
+public class Solution {
+	
+
+	public static void main(String[] args){
+		
+		System.out.println("1. Calculate Armstrong");
+	    System.out.println("2. Calculate Lucky Number");
+	    System.out.println("Choose One");
+
+	    int choice = 1;
+	    
+	    switch(choice){
+	    
+	    case 1: 
+	    	System.out.println("enter a number");
+
+	    	int num = 153;
+	        int temp = num;
+	        int sum = 0;
+	             
+	        while(num!=0){
+                int rem = num%10;
+                int square = rem*rem*rem;
+                sum += square;
+                num = num/10;
+             }
+
+             if(sum==temp)
+                System.out.println("The Number " + temp + " is an Armstrong number");
+             else
+                System.out.println("The Number " + temp + " is not an Armstrong number");
+	             
+             break;
+
+	      case 2: System.out.println("enter a number");
+
+	            int num2 = 1623;
+	            String s = String.valueOf(num2);
+	            int newsum = 0;
+
+	            for(int i =1; i<s.length(); i=i+2){
+
+	            	char c = s.charAt(i);
+	            	int newtemp = Character.getNumericValue(c);
+	            	int square = newtemp*newtemp;
+
+	            	newsum += square;
+
+	            }
+
+
+
+	            if(newsum % 9 == 0)
+	            	System.out.println(num2 +" is a Lucky Number");
+	            else
+	            	System.out.println(num2 + " is not a Lucky Number");
+
+
+	            break;
+
+	      default: 
+	    	  System.out.println("enter valid choice");
+	    	  
+	          break;
+
+	      }
+  		
+	}
+
+}
+
+**********************************************************************************
+Exercise 6 Arrays
+
+public class Solution {
+
+		double salary[] = { 23500.0, 25080.0, 28760.0, 22340.0, 19890.0 };
+		int n = 5;
+		double sum = 0;
+
+		for (double i : salary) {
+			sum += i;
+		}
+
+		double avg = sum / n;
+		byte c1 = 0, c2 = 0;
+		for (double i : salary) {
+
+			if (i > avg)
+				c1 += 1;
+
+			else if (i < avg)
+				c2 += 1;
+
+		}
+
+		System.out.println("The average of the salary : " + avg);
+		System.out.println("The number of employees having salary greater than average is : " + c1);
+		System.out.println("The number of employees having salary less than average is : " + c2);
+	}
+}
+
+*************************************************************************************
+Exercise 7 Enhanced For Loop
+
+class Solutio{
+	int arr[] = new int[5];
+	
+	void setMarks(int arr[]) {
+		for(int i = 0; i < 5; i++)
+			this.arr[i] = arr[i];
+	}
+	
+	void display() {
+		for(int i : arr)
+			System.out.println(i);
+	}
+}
+
+**************************************************************************************
+Exercise 8 Constructors
+
+public class ChocolateTester {
+
+	public static void main(String[] args){
+		Choclate choc = new Choclate();
+		System.out.println("BarCode = " + choc.barCode + ", Name = " + choc.name + 
+				", Weight = " + choc.weight + ", cost = " + choc.cost);
+		
+		choc.setBarCode(102);
+		choc.setName("Harshey's");
+		choc.setWeight(24);
+		choc.setCost(50);
+		
+		System.out.println("BarCode = " + choc.barCode + ", Name = " + choc.name + 
+				", Weight = " + choc.weight + ", cost = " + choc.cost);
+		
+	}
+}
+
+class Choclate{
+	int barCode;
+	String name;
+	int weight, cost;
+	
+	Choclate(){
+		barCode = 101;
+		name = "Cadbury";
+		weight = 12;
+		cost = 10;
+	}
+	
+	public int getBarCode() {
+		return barCode;
+	}
+	public void setBarCode(int barCode) {
+		this.barCode = barCode;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	
+}
+
+********************************************************************************
+Exercise 9 this keyword
+
+public class ChocolateTester {
+
+	public static void main(String[] args){
+		Choclate choc = new Choclate(101, "Cadbury", 12, 10);
+		System.out.println("BarCode = " + choc.barCode + ", Name = " + choc.name + 
+				", Weight = " + choc.weight + ", cost = " + choc.cost);
+		
+		choc.setBarCode(102);
+		choc.setName("Harshey's");
+		choc.setWeight(24);
+		choc.setCost(50);
+		
+		System.out.println("BarCode = " + choc.barCode + ", Name = " + choc.name + 
+				", Weight = " + choc.weight + ", cost = " + choc.cost);
+		
+	}
+}
+
+class Choclate{
+	int barCode;
+	String name;
+	int weight, cost;
+	
+	public Choclate() {}
+	
+	public Choclate(int barCode, String name, int weight, int cost) {
+		super();
+		this.barCode = barCode;
+		this.name = name;
+		this.weight = weight;
+		this.cost = cost;
+	}
+	public int getBarCode() {
+		return barCode;
+	}
+	public void setBarCode(int barCode) {
+		this.barCode = barCode;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+}
+
+*********************************************************************************
+Exercise 10 Inheritence
+
+public class EmployeeRecords {
+
+	public static void main(String[] args) {
+		PermanentEmployee e1 = new PermanentEmployee();
+		e1.setName("Anil");
+		e1.setEmpId(101);
+		e1.setBasicPay(10000);
+		e1.setHra(1500);
+		e1.setExperiance(3);
+		e1.calculateSalary();
+
+		ContractEmployee e2 = new ContractEmployee();
+		e2.setName("Ankit");
+		e2.setEmpId(102);
+		e2.setWages(500);
+		e2.setHours(10);
+		e2.calculateSalary();
+
+	}
+}
+
+class Employee {
+	int empId;
+	String name;
+	double salary;
+	
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+}
+
+class PermanentEmployee extends Employee{
+	double basicPay;
+	double hra;
+	int experiance;
+	
+	public double getBasicPay() {
+		return basicPay;
+	}
+	public void setBasicPay(double basicPay) {
+		this.basicPay = basicPay;
+	}
+	public double getHra() {
+		return hra;
+	}
+	public void setHra(double hra) {
+		this.hra = hra;
+	}
+	public int getExperiance() {
+		return experiance;
+	}
+	public void setExperiance(int experiance) {
+		this.experiance = experiance;
+	}
+	public void calculateSalary() {
+		int vp = this.experiance < 3 ? 0 : this.experiance < 5 ? 5 : this.experiance < 10 ? 7 : 12;
+		System.out.println(vp*this.basicPay/100 + this.basicPay + this.hra);
+	}
+}
+
+class ContractEmployee extends Employee {
+	double wages;
+	int hours;
+	
+	public double getWages() {
+		return wages;
+	}
+	public void setWages(double wages) {
+		this.wages = wages;
+	}
+	public int getHours() {
+		return hours;
+	}
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
+	public void calculateSalary() {
+		System.out.println(this.hours * this.wages);
+	}
+}
+
+***************************************************************************************
+Exercise 11.1 Polymorphism 
+
+public class Solution{
+
+	public static void main(String args[]) {
+		
+		PlayerRating pl = new PlayerRating(1, "Beckham");
+		pl.setCriticOneRating(9);
+		pl.setCriticTwoRating(9.9f);
+		pl.calculateAverageRating(pl.getCriticOneRating(), pl.getCriticTwoRating());
+		pl.calculateCategory();
+		pl.display();
+		
+		pl = new PlayerRating(1, "Oscar");
+		pl.setCriticOneRating(1);
+		pl.setCriticTwoRating(1);
+		pl.setCriticThreeRating(1);
+		pl.calculateAverageRating(pl.getCriticOneRating(), pl.getCriticTwoRating(), pl.getCriticThreeRating());
+		pl.calculateCategory();
+		pl.display();
+		
+		
+	}
+}
+class PlayerRating {
+	int playerPosition;
+	String playerNam;
+	float criticOneRating;
+	float criticTwoRating;
+	float criticThreeRating;
+	float averageRating;
+	char category;
+	
+	PlayerRating(int playerPosition, String playerName){
+		this.playerPosition = playerPosition;
+		this.playerNam = playerName;
+	}
+	
+	public float getCriticOneRating() {
+		return criticOneRating;
+	}
+
+	public void setCriticOneRating(float criticOneRating) {
+		this.criticOneRating = criticOneRating;
+	}
+
+	public float getCriticTwoRating() {
+		return criticTwoRating;
+	}
+
+	public void setCriticTwoRating(float criticTwoRating) {
+		this.criticTwoRating = criticTwoRating;
+	}
+
+	public float getCriticThreeRating() {
+		return criticThreeRating;
+	}
+
+	public void setCriticThreeRating(float criticThreeRating) {
+		this.criticThreeRating = criticThreeRating;
+	}
+
+	void calculateAverageRating(float criticOneRating, float criticTwoRating) {
+		this.averageRating = (criticOneRating + criticTwoRating) / 2;
+	}
+	
+	void calculateAverageRating(float criticOneRating, float criticTwoRating, float criticThreeRating) {
+		this.averageRating = (criticOneRating + criticTwoRating + criticThreeRating) / 3;
+	}
+	
+	void calculateCategory() {
+		category = averageRating > 8 ? 'A' : averageRating > 5 ? 'B' : 'C';
+	}
+	
+	void display() {
+		System.out.println("the player name is " + playerNam);
+		System.out.println("the player position is " + playerPosition);
+		System.out.println("the average rating is " + averageRating);
+		System.out.println("the category is " + category);
+	}
+}
+
+***************************************************************************************
+Exercise 11.2 Polymorphism
+
+public class Solution {
+
+	public static void main(String args[]) {
+		long telephoneNo[] = new long[]{9452425421l, 7676765252l};
+		Registration reg1 = new Registration("Kevin", "MN9891N", telephoneNo);
+		reg1.display();
+		
+		telephoneNo = new long[]{2345615451l, 6763562562l};
+		reg1 = new Registration("Julias", 123, "PN7878", telephoneNo);
+		reg1.display();
+		
+		telephoneNo = new long[]{9634524353l, 9887373737l};
+		reg1 = new Registration("Jammy", 45453, 765, telephoneNo);
+		reg1.display();
+		
+		telephoneNo = new long[]{9867456367l, 7645367356l};
+		reg1 = new Registration("Rose", "PN7878", 34356, telephoneNo);
+		reg1.display();
+		
+	}
+}
+
+class Registration {
+
+	private String customerName;
+	private String panCardNo;
+	private int voterId;
+	private String passportNo;
+	private int licenseNo;
+	private long[] telephoneNo;
+	
+	public Registration(String customerName, String passportNo, long[] telephoneNo) {
+		super();
+		this.customerName = customerName;
+		this.passportNo = passportNo;
+		this.telephoneNo = telephoneNo;
+	}
+	
+	public Registration(String customerName, int licenseNo, String panCardNo, long[] telephoneNo) {
+		super();
+		this.customerName = customerName;
+		this.licenseNo = licenseNo;
+		this.panCardNo = panCardNo;
+		this.telephoneNo = telephoneNo;
+	}
+
+	public Registration(String customerName, int voterId, int licenseNo, long[] telephoneNo) {
+		super();
+		this.customerName = customerName;
+		this.voterId = voterId;
+		this.licenseNo = licenseNo;
+		this.telephoneNo = telephoneNo;
+	}
+
+	public Registration(String customerName, String panCardNo, int voterId, long[] telephoneNo) {
+		super();
+		this.customerName = customerName;
+		this.panCardNo = panCardNo;
+		this.voterId = voterId;
+		this.telephoneNo = telephoneNo;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+	public String getPanCardNo() {
+		return panCardNo;
+	}
+	public int getVoterId() {
+		return voterId;
+	}
+	public String getPassportNo() {
+		return passportNo;
+	}
+	public int getLicenseNo() {
+		return licenseNo;
+	}
+	public long[] getTelephoneNo() {
+		return telephoneNo;
+	}
+
+	void display() {
+		System.out.println("Congratulations "+ customerName +"!!! you have been successfully registered for our services with following details:");
+		
+		if(licenseNo != 0)
+			System.out.println("License number: " + licenseNo);
+		if(panCardNo != null)
+			System.out.println("Pan card number: " + panCardNo);
+		if(voterId != 0)
+			System.out.println("Voter id: " + voterId);
+		if(passportNo != null)
+			System.out.println("Passport number: " + passportNo);
+		
+		System.out.print("Telephone number: ");
+		for(long l : telephoneNo)
+			System.out.println(l);
+	}
+	
+}
+
+********************************************************************************
+Exercise 12.1 Static Modifier
+
+public class LoanTester {
+
+	public static void main(String args[]) {
+		Loan loan1 = new Loan();
+		Loan loan2 = new Loan();
+		Loan loan3 = new Loan(1, 2, 3, 4, 5);
+		
+		System.out.println(Loan.loanCounter);
+	}
+}
+
+class Loan {
+	int loanNo;
+	int accountNo;
+	int customerNo;
+	float loanAmount;
+	int loanDuration;
+	float intrest;
+	
+	static int loanCounter;
+	
+	Loan(){
+		loanCounter++;
+	}
+	
+	public Loan(int accountNo, int customerNo, float loanAmount, int loanDuration, float intrest) {
+		this();
+		this.accountNo = accountNo;
+		this.customerNo = customerNo;
+		this.loanAmount = loanAmount;
+		this.loanDuration = loanDuration;
+		this.intrest = intrest;
+	}
+	public int getLoanNo() {
+		return loanNo;
+	}
+	public void setLoanNo(int loanNo) {
+		this.loanNo = loanNo;
+	}
+	public int getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(int accountNo) {
+		this.accountNo = accountNo;
+	}
+	public int getCustomerNo() {
+		return customerNo;
+	}
+	public void setCustomerNo(int customerNo) {
+		this.customerNo = customerNo;
+	}
+	public float getLoanAmount() {
+		return loanAmount;
+	}
+	public void setLoanAmount(float loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+	public int getLoanDuration() {
+		return loanDuration;
+	}
+	public void setLoanDuration(int loanDuration) {
+		this.loanDuration = loanDuration;
+	}
+	public float getIntrest() {
+		return intrest;
+	}
+	public void setIntrest(float intrest) {
+		this.intrest = intrest;
+	}
+		
+}
+
+**************************************************************************************
+Exercise 12.2 Static Modifier
+
+public class LoanTester {
+
+	public static void main(String args[]) {
+		Loan loan1 = new Loan();
+		Loan loan2 = new Loan();
+		Loan loan3 = new Loan(1, 2, 3, 4, 5);
+		Loan loan4 = new Loan(1, 2, 3, 4, 5);
+		
+		System.out.println(loan1.getLoanCounter());
+		System.out.println(loan2.getLoanCounter());
+		System.out.println(loan3.getLoanCounter());
+		System.out.println(loan4.getLoanCounter());
+	}
+}
+
+class Loan {
+	int loanNo;
+	int accountNo;
+	int customerNo;
+	float loanAmount;
+	int loanDuration;
+	float intrest;
+	
+	static int loanCounter;
+	
+	Loan(){
+		loanCounter++;
+	}
+	
+	public Loan(int accountNo, int customerNo, float loanAmount, int loanDuration, float intrest) {
+		this();
+		this.accountNo = accountNo;
+		this.customerNo = customerNo;
+		this.loanAmount = loanAmount;
+		this.loanDuration = loanDuration;
+		this.intrest = intrest;
+	}
+	
+	public int getLoanCounter() {
+		return loanCounter;
+	}
+	
+	public int getLoanNo() {
+		return loanNo;
+	}
+	public void setLoanNo(int loanNo) {
+		this.loanNo = loanNo;
+	}
+	public int getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(int accountNo) {
+		this.accountNo = accountNo;
+	}
+	public int getCustomerNo() {
+		return customerNo;
+	}
+	public void setCustomerNo(int customerNo) {
+		this.customerNo = customerNo;
+	}
+	public float getLoanAmount() {
+		return loanAmount;
+	}
+	public void setLoanAmount(float loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+	public int getLoanDuration() {
+		return loanDuration;
+	}
+	public void setLoanDuration(int loanDuration) {
+		this.loanDuration = loanDuration;
+	}
+	public float getIntrest() {
+		return intrest;
+	}
+	public void setIntrest(float intrest) {
+		this.intrest = intrest;
+	}
+		
+}
+
+***********************************************************************************
+Exercise 13 Variable Arguments
+
+public class Solution {
+
+	public static void main(String... args) {
+		
+	}
+	
+	void displayList(int... input) {
+		for(int i : input)
+			System.out.println(i);
+	}
+	
+	void maxOfList(int... input) {
+		int max = Integer.MIN_VALUE;
+		
+		for(int i : input)
+			max = Integer.max(max, i);
+		
+		System.out.println("Max: " + max);
+	}
+	
+	void sortList(int... input) {
+		Arrays.sort(input);
+		
+		displayList(input);
+	}
+	
+	void averageList(int... input) {
+		int sum = 0;
+		for(int i : input)
+			sum += i;
+		
+		System.out.println("Average: " + ((double) sum/input.length));
+	}
+}
+
+***********************************************************************************
+Exercise 14 Enumerated Data Types
+
+public class Solution {
+
+	public static void main(String... args) {
+		Student s1= new Student();
+        s1.setStudentId(1000);
+        s1.setName("alvin");
+        s1.setTotalMarks(280);
+        s1.calculateGrade();
+        s1.calculateScholorshipAmount();
+ 
+        
+        System.out.println("Student Details");
+        System.out.println("Student Id: "+s1.getStudentId());
+        System.out.println("Student Name: "+s1.getName());
+        System.out.println("Student Grade: "+s1.getGrade());
+        System.out.println("Student amount: "+s1.getScholorshipAmount());
+	}
+}
+
+enum Grade {
+	A(5000), B(4000), C(30000), D(2000), E(0);
+	
+	int scholorshipAmount; 
+	Grade(int i){
+		this.scholorshipAmount = i;
+	}	
+	
+	int getScholorshipAmount() {
+		return scholorshipAmount;
+	}
+}
+
+class Student {
+	int studentId;
+	String name;
+	Grade grade;
+	int scholorshipAmount;
+	int totalMarks;
+	
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Grade getGrade() {
+		return grade;
+	}
+	public void setGrade(Grade grade) {
+		this.grade = grade;
+	}
+	public int getScholorshipAmount() {
+		return scholorshipAmount;
+	}
+	public void setScholorshipAmount(int scholorshipAmount) {
+		this.scholorshipAmount = scholorshipAmount;
+	}
+	public int getTotalMarks() {
+		return totalMarks;
+	}
+	public void setTotalMarks(int totalMarks) {
+		this.totalMarks = totalMarks;
+	}
+	
+	public void calculateGrade() {
+		if(totalMarks >= 250)
+			grade = Grade.A;
+		else if(totalMarks >= 200)
+			grade = Grade.B;
+		else if(totalMarks >= 175)
+			grade = Grade.C;
+		else if(totalMarks >= 150)
+			grade = Grade.D;
+		else
+			grade = Grade.E;
+	}
+	
+	public void calculateScholorshipAmount() {
+		scholorshipAmount = grade.getScholorshipAmount();
+	}
+	
+}
+
+****************************************************************************
+Exercise 15 Abstract Class
+
+public class Solution {
+
+	public static void main(String... args) {
+		CreditCardPayment c1 = new CreditCardPayment(10000.23,5001);
+        c1.payBill(15000.0);
+        
+        CreditCardPayment c2 = new CreditCardPayment(10000.23,5001);
+        c2.payBill(0);
+        
+         ShoppingPayment s1 = new ShoppingPayment(10000.23,5001);
+         s1.payBill(5000);   
+        
+         ShoppingPayment s2 = new ShoppingPayment(5000.0,561328);
+         s2.payBill(5000.0);
+        
+         ShoppingPayment s3 = new ShoppingPayment(5000.0,561328);
+         s3.payBill(6000.0);
+         
+         ShoppingPayment s4 = new ShoppingPayment(5000.0,561328);
+          s4.payBill(4000.0);
+	}
+}
+
+abstract class RRPaymentServices {
+    private double balance;
+    private int customerID;
+    
+    abstract void payBill(double amount);
+    
+    RRPaymentServices(double balance, int customerID){
+        this.balance=balance;
+        this.customerID=customerID;
+    }
+   
+    public double getBalance() {
+        return balance;
+    }
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    public int getCustomerID() {
+        return customerID;
+    }
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }   
+}
+
+class ShoppingPayment extends RRPaymentServices{
+     private static int counter=1000;
+     private String paymentID;
+     
+    ShoppingPayment(double balance, int customerID) {
+        super(balance, customerID);
+    }
+    @Override
+    void payBill(double amount) { 
+        if(getBalance() - amount >= amount) { 
+            System.out.println("Congratulations!! You have successfully made  a payment of Rs." + amount
+                        + "  . Payment details are");
+            System.out.println("*******************************************************************************");
+            System.out.println("Customer ID : " + getCustomerID());
+            paymentID = "S" + counter;
+            System.out.println("Payment ID : " + paymentID);
+            System.out.println("Previous Due : " + getBalance());
+            System.out.println("Remaining Due :" + (getBalance() - amount));
+            counter++;    
+        }else if(amount > getBalance()){ 
+            System.out.println("Excess amount entered!! Please try again");
+        }
+        else if(amount == getBalance()) {
+            paymentID = "S" + counter;
+            System.out.println("Congratulations!! Your payment of Rs." + amount
+                        + "is successful with payment id " + paymentID); 
+        }
+        else if(amount < getBalance()) {
+            System.out.println("Insufficient amount entered !! Please try again");
+        }  
+    }
+}
+class CreditCardPayment extends RRPaymentServices{
+    private static int counter=5001;
+    private String paymentID;
+    private double cashBack;
+    private double balanceDue;
+    
+    CreditCardPayment(double balance, int customerID) {
+        super(balance, customerID);
+    }
+    
+    public String getPaymentID() {
+        return paymentID;
+    }
+    public double getCashBack() {
+        return cashBack;
+    }    
+    public double getBalanceDue() {
+        return balanceDue;
+    }
+    @Override
+    void payBill(double amount) {
+    
+        if(amount > getBalance()) {             
+           cashBack += (amount-getBalance());   
+        }else if(amount < getBalance()) {
+            balanceDue += getBalance() - amount;
+        }
+       
+        System.out.println("Congratulations!! You have successfully made  a payment of Rs."+amount
+                    +"  . Payment details are");
+        System.out.println("**********************************************************************");
+        System.out.println("Customer ID : " + getCustomerID());
+        paymentID = "C" + counter;
+        System.out.println("Payment ID : " + paymentID);
+        System.out.println("Previous Due : "+getBalance());
+        System.out.println("Remaining Due :"+getBalanceDue());
+        System.out.println("CashBack wallet Balance :"+getCashBack());
+        counter++;
+        
+    }      
+}
+
+****************************************************************************************
+Exercise 16 Interface
+
+class Intern implements DataProvider {
+	int marksSecured;
+	int graceMarks;
+	int totalMarks;
+
+	public Intern(int marksSecured, int graceMarks) {
+		this.marksSecured = marksSecured;
+		this.graceMarks = graceMarks;
+	}
+
+	@Override
+	public void calcPercentage() {
+		totalMarks = (this.marksSecured + this.graceMarks);
+		if (totalMarks > 8000) {
+			System.out.println("Please enter the correct marks");
+		} else {
+			double percent = (double) totalMarks / toatalMaximumMarks * 100;
+			System.out.println("the total aggregate percentage secured is " + percent);
+		}
+	}
+}
+
+class Trainee implements DataProvider {
+	int marksSecured;
+
+	public Trainee(int marksSecured) {
+		this.marksSecured = marksSecured;
+	}
+
+	@Override
+	public void calcPercentage() {
+		double percent = (double) marksSecured / toatalMaximumMarks * 100;
+		System.out.println("the total aggregate percentage secured is " + percent);
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		DataProvider d;
+
+		d = new Intern(5000, 500);
+		d.calcPercentage();
+
+		d = new Trainee(6000);
+		d.calcPercentage();
+
+		d = new Intern(8000, 500);
+		d.calcPercentage();
+
+	}
+}
+
+*******************************************************************************
+Exercise 18 Access Modifier
+
+class InfyTV {
+
+	private String photographer,newsReporter, correspondent;
+	   
+	public String getPhotographer() {
+		return photographer;
+	}
+	public void setPhotographer(String photographer) {
+		this.photographer = photographer;
+	}
+	public String getNewsReporter() {
+		return newsReporter;
+	}
+	public void setNewsReporter(String newsReporter) {
+		this.newsReporter = newsReporter;
+	}
+	public String getCorrespondent() {
+		return correspondent;
+	}
+	public void setCorrespondent(String correspondent) {
+		this.correspondent = correspondent;
+	}
+
+	public void documentaryFilm() {
+	      System.out.println("A hundred years ago there was 100,000 tigers in the world. Today there are as few as 3,200. Why are tigers disappearing?......");
+	      System.out.println("by Correspondent: " + correspondent);
+	      System.out.println("Photographer:" + photographer);
+	      System.out.println("newsReporter: " + newsReporter);
+	   }
+}
+
+class classTester {
+	public static void main(String[] args) {
+
+		InfyTV infyTv1 = new InfyTV();
+		infyTv1.setPhotographer("Joshua");
+		infyTv1.setNewsReporter("Hudson");
+		infyTv1.setCorrespondent("Kimberely");
+		infyTv1.documentaryFilm();
+	}
+}
+
+****************************************************************************************
+Exercise 19 Inner Class
+
+class Football{
+	String leagueName = "lname", coachName = "cname";
+	
+	class Player{
+		String playerName = "pname";
+		long phoneNo = 987456321l;
+		
+		public void show() {
+			System.out.println(leagueName + " and " + coachName);
+		}
+	}
+	
+	void main() {
+		Player p =new Player();
+		System.out.println(p.playerName + " and " + p.phoneNo);
+	}
+}
+
+**************************************************************************************
+Exercise 20.1 Java Library
+
+class StudentRegistration {
+	private String studentName;
+	private double age;
+	private int admissionNumber;
+	private int rollNumber;
+	private static int counter;
+
+	public StudentRegistration(String studentName, double age, int admissionNumber) {
+		super();
+		this.studentName = studentName;
+		this.age = age;
+		this.admissionNumber = admissionNumber;
+	}
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public double getAge() {
+		return age;
+	}
+
+	public int getAdmissionNumber() {
+		return admissionNumber;
+	}
+
+	public int getRollNumber() {
+		return rollNumber;
+	}
+
+	@Override
+	public int hashCode() {
+		return this.admissionNumber;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		StudentRegistration st = (StudentRegistration) obj;
+
+		if (this.hashCode() == st.hashCode()) {
+			return false;
+		} else {
+			StudentRegistration.counter++;
+			return true;
+		}
+	}
+
+	public void generateRollNumber() {
+		System.out.println("\nStudent Details");
+		System.out.println("*********************************");
+		System.out.println("Student Name :" + getStudentName());
+		System.out.println("Admission Number :" + getAdmissionNumber());
+		System.out.println("Roll Number :" + StudentRegistration.counter);
+
+	}
+}
+
+class RegistrationTester {
+	public static void main(String[] args) {
+
+		StudentRegistration student1 = new StudentRegistration("Peter", 23, 5001);
+		StudentRegistration student2 = new StudentRegistration("Peter", 24, 5003);
+		if (student1.equals(student2)) {
+			student2.generateRollNumber();
+		} else {
+			System.out.println("\nRoll Number already generated for student!!");
+		}
+		StudentRegistration student3 = new StudentRegistration("Peter", 23, 5001);
+		StudentRegistration student4 = new StudentRegistration("Peter", 24, 5001);
+		if (student3.equals(student4)) {
+			student4.generateRollNumber();
+		} else {
+			System.out.println("\nRoll Number already generated for student!!");
+		}
+	}
+}
+
+************************************************************************************
+Exercise 20.2 Java Library
+
+class LocationChanger {
+    String location;
+    String name;
+    public String getLocation() {
+        return location;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    void checkCity() {
+        if(location.contains("Delhi")) 
+        	System.out.println("Welcome to Infy Mysore Delhites!");
+        else if (location.contains("Trivandrum")) 
+        	System.out.println("Welcome to MyDC people of Trinfy!");
+        else if (location.contains("Bhubaneshwar")) 
+        	System.out.println("You came a long way down South! we welcome you!");
+        else 
+        	System.out.println("oops your city name is not llisted!");
+    }
+    
+    void editAddress() {
+        if(location.contains("STP"))
+            System.out.println("Your location has been changed from STP to SEZ");
+        else 
+        	System.out.println("Your location remains same");
+    }
+   
+    void welcomeEmployee() {
+        System.out.println("Hello "+name.split("\\s")[0]);
+    }
+ 
+}
+public class Tester{
+    public static void main(String[] args) {
+        
+        LocationChanger l1 = new LocationChanger();
+        l1.setName("Annabelle Michael");
+        l1.setLocation("BL003,Delhi,STP");
+       
+        l1.welcomeEmployee();
+        l1.checkCity();
+        l1.editAddress();
+        
+        LocationChanger l2 = new LocationChanger();
+        l2.setName("Jissele Jame");
+        l2.setLocation("FL091,Pune,SEZ");
+        
+        l2.welcomeEmployee();
+        l2.checkCity();
+        l2.editAddress();
+       
+    }
+}
+
+****************************************************************************************
+Exercise 20.3 Java Library
+
+public class Solution {
+    public static void main(String[] args) {
+    	int number = 45654;
+    	StringBuilder str = new StringBuilder();
+    	str.append(number);
+    	if(Integer.parseInt(str.reverse().toString()) == number)
+    		System.out.println("Yes");
+    	else
+    		System.out.println("No");
+    }
+}
+
+************************************************************************************
+Exercise 21.1 Date-Time API
+
+import java.time.LocalDate;
+
+public class AgeFinder {
+
+	public int getAge(LocalDate dateOfBirth) {
+		// Implementation required
+		LocalDate current = LocalDate.now();
+		int age = current.getYear() - dateOfBirth.getYear();
+		int monthDif = current.getMonthValue() - dateOfBirth.getMonthValue();
+		if(monthDif < 0)
+			return age - 1;
+		if(monthDif == 0) {
+			int dayDif = current.getDayOfMonth() - dateOfBirth.getDayOfMonth();
+			if(dayDif < 0)
+				return age -1;
+		}
+		return age;
+	}
+
+	public LocalDate getDateAfterNDays(int noOfDays) {
+		// Implementation required
+		LocalDate current = LocalDate.now();
+		return current.plusDays(noOfDays);
+	}
+
+	public LocalDate getDateAfterXYearYMonthZDays(int year, int month, int day) {
+		// Implementation required
+		LocalDate current = LocalDate.now();
+		current = current.plusYears(year);
+		current = current.plusMonths(month);
+		current = current.plusDays(day);
+		return current;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		AgeFinder obj = new AgeFinder();
+		LocalDate date = LocalDate.of(1989, 10, 26);
+		System.out.println("Age:" + obj.getAge(date));
+		System.out.println("The date after 15 days is:" + obj.getDateAfterNDays(15));
+		System.out.println("The date after 1 year,2 months and 3 days is:" + obj.getDateAfterXYearYMonthZDays(1, 2, 3));
+	}
+
+}
+
+*************************************************************************
+Exercise 22 Memory Management
+
+
+public class Solution {
+    public static void main(String[] args) {
+    	House citizen1 = new House(1);
+		House citizen2 = new House(2);
+		House citizen3 = new House(3);
+		House citizen4 = new House(4);
+		citizen1.setHouseNumber(3);;
+		citizen2.setHouseNumber(4);;
+		//citizen3 = null;
+		
+		System.out.println(citizen3.getHouseNumber() + ", " + citizen1.getHouseNumber());
+		
+		citizen1.setHouseNumber(4);;
+		
+		System.out.println(citizen1.getHouseNumber() + ", " + citizen2.getHouseNumber() + ", "
+		+ citizen3.getHouseNumber() + ", "+citizen1.getHouseNumber());
+    }
+}
+
+class House{
+	private int houseNumber;
+	
+	House(int houseNumber){
+		this.houseNumber= houseNumber;
+	}
+
+	public int getHouseNumber() {
+		return houseNumber;
+	}
+
+	public void setHouseNumber(int houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+	
+}
+
+**************************************************************************************
+
+

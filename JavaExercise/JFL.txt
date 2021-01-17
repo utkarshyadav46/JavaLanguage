@@ -1,0 +1,1547 @@
+***************************************
+JAVA LANGUAGE FEATURES
+***************************************
+///////////////////////////////////////
+***************************************
+THROWABLE HIERARCHY
+***************************************
+Q1 of 2
+Consider a Java program being executed to read gigabytes of a file. For each line it reads, a Java object corresponding to the line is created. After a while, JVM is not able to allocate memory for creating an object. In this scenario, choose the correct statement from below.
+
+The exception occurred can be handled and program continues from the next line
+The error occurred can be handled and program continues from the next line
+The error cannot be handled and program execution stops.
+The exception cannot be handled and program execution stops.
+Option The error cannot be handled and program execution stops. is Correct
+
+
+Q2 of 2
+What is the output of the following code snippet?
+
+public class TestException {
+
+	public static void main(String[] args) {
+		Integer totalValue = calculate(45);
+		System.out.println(totalValue.intValue());
+	}
+
+	private static Integer calculate(int i) {
+		return null;
+	}
+
+}
+ 
+
+Compilation Error as NullPointer Exception is not caught
+Runtime Exception  <<<------------<<<
+null
+0
+Option Runtime Exception is Correct
+///////////////////////////////////////
+***************************************
+TRY-CATCH-FINALLY
+***************************************
+Q1 of 4
+Have a look at the following code:
+
+public class CalculateUtil {
+    public static void calculateA() throws Exception {
+        calculateB();
+        calculateC();
+        calculateD();
+    }
+    private void  calculateB(){
+    // code to calculate B
+    }
+    private void  calculateC(){
+    // code to calculate C
+    }
+    private void  calculateD(){
+    // code to calculate D
+    }
+
+    public static void main( String[] args) {
+         try {
+             CalculateUtil.calculateA();
+         }
+         catch(Exception e){
+         // Line x
+         }
+    }
+}
+Any of these methods may throw an exception. As a programmer, we want to know the details of the method and the line of code which has raised the exception when calling CalculateUtil.calculateA (). Which method of the Exception class is appropriate for 'line x'?
+
+getMessage()
+printStackTrace()  <<<------------<<<
+getExceptionMessage()
+toString()
+Option printStackTrace() is Correct
+
+Q2 of 4
+Consider the following code snippet. What is the result of the execution?
+
+public class Tester {
+	public static void main(String[] args) {
+		try{
+			System.out.println(Double.valueOf("420.00"));
+		}catch(Exception e){
+			System.out.println("Some exception occurred");
+		}catch(NumberFormatException ex){
+			System.out.println("NumberFormatException occurred");
+			
+		}
+	}
+
+}
+ 
+
+Runtime Exception
+Compilation Error  <<<------------<<<
+420.00
+None of the above
+Option Compilation Error is Correct
+
+Q3 of 4
+Consider the code snippet given below. In the output which all statements will be printed?
+
+public class ExceptionHandlingQuizDemo {
+	public static void main(String[] args) {
+		int[] intArray = { 1, 2, 3, 4, 5 };
+		int intVar = 0;
+		try {
+			intVar = intArray[5];
+			System.out.println("This is the value of intVar:=" + intVar);// 1
+		} catch (ArrayIndexOutOfBoundsException ec) {
+			System.out.println("An exception has occurred here:="
+					+ ec.getMessage());// 2
+		} finally {
+			System.exit(-1);
+			System.out.println("This is from with in the finally block");// 3
+		}
+		System.out.println("This will be a part of response");// 4
+	}
+}
+ 
+
+Statements 1, 3 and 4
+Statements 2 and 3
+Statements 2 and 4
+Statement 2 only  <<<------------<<<
+Option Statement 2 only is Correct
+
+Q4 of 4
+What is the output of executing the following code snippet? Assume that the command line arguments are not passed.
+
+public class ExceptionHandlingDemo {
+		public static void main(String[] args) {
+		int[] intArray = { 1, 2, 3, 4, 5 };
+		int intVar = 0;
+		try {
+			intVar = intArray[3];
+			System.out.println("This is the value of intVar:=" + intVar);// 1
+			String str = args[0];
+			System.out.println("Length of the string is:=" + str.length());//2
+
+		} catch (ArrayIndexOutOfBoundsException|ArithmeticException|NullPointerException ec){
+			System.out.println("An exception has occurred here:="+ ec.getMessage());// 3
+		} finally {
+			System.out.println("This is from with in the finally block");// 4
+		}
+		System.out.println("This will be a part of response");// 5
+
+	}
+}
+ 
+
+Runtime Exception: Null Pointer Exception and no other output
+Runtime Exception: ArrayIndexOutOfBoundsException and no other output
+Statements 1,3,4 and 5 will be part of output.  <<<------------<<<
+Statements 1,2,4 and 5 will be part of output.  <<<------------<<<
+Option Statements 1,3,4 and 5 will be part of output. is Correct
+
+
+///////////////////////////////////////
+***************************************
+EXCEPTION HANDLING KEYWORDS
+Q1 of 3
+What is the output when the following code snippet is executed?
+
+public class TestExceptions {
+	public static void main(String[] args) {
+		try {
+			badMethod();
+			System.out.print("A");
+		} catch (Exception ex) {
+			System.out.print("C");
+		} finally {
+			System.out.print("B");
+		}
+		System.out.print("D");
+	}
+	public static void badMethod() {
+		throw new Error();
+	}
+}
+ 
+
+C is printed before exiting with an error message.
+B is printed and program exits with an error message.  <<<------------<<<
+BCD is printed before exiting with an error message.
+CBD is printed and program exits normally.
+Option B is printed and program exits with an error message. is Correct
+
+Q2 of 3
+What is the outcome of the following code?
+
+public class TestingCode {
+	public static void display() {
+		System.out.println("Inside Display");
+		throw new ArithmeticException();
+	}
+	public static void main(String[] args) throws Exception {
+		display();
+		System.out.println("Inside Main");
+	}
+}
+ 
+
+Inside Display
+Inside Display Inside Main
+Inside Display Exception in thread main: java.lang.ArithmeticException  <<<------------<<<
+Inside Main Inside Display
+Option Inside Display Exception in thread main: java.lang.ArithmeticException is Correct
+
+Q3 of 3
+Select the best practices in exception handling from below given code snippets.
+
+public void display() throws FileNotFoundException { }  <<<------------<<<
+public void display() throws Exception { }
+try{ //code is here} catch(FileNotFoundException e){throw e; }
+try{ //code is here} catch(Exception e){e.printStackTrace();}
+Option public void display() throws FileNotFoundException { } is Correct
+///////////////////////////////////////
+***************************************
+USR DEFINED EXCEPTIONS
+Q1 of 1
+What is the outcome of the following code snippet?
+
+class MyOwnException extends Exception {
+	public MyOwnException(String msg) {
+		super(msg);
+	}
+}
+public class TestingString {
+	static void testCode() throws MyOwnException {
+		try {
+			throw new MyOwnException("test exception");
+		} catch (Exception ex) {
+			System.out.print(" generic exception caught ");
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			testCode();
+		} catch (MyOwnException ex) {
+			System.out.print("custom exception handling");
+		}
+	}
+}
+ 
+
+Compilation Error
+Runtime Exception
+Will print “generic exception caught”  <<<------------<<<
+Will print “custom exception handling”
+Option Will print “generic exception caught” is Correct
+///////////////////////////////////////
+***************************************
+GEBERIC CLASS
+Q1 of 1
+What is the output of this code?
+
+class MyGen<T> {
+	private T obj;
+	public void add(T obj) {
+	    this.obj = obj;
+	}
+	public T get() {
+	    return obj;
+	}
+}
+
+public class TestGenerics {
+	public static void main(String args[]) {
+           MyGen<Integer> m = new MyGen<Integer>();
+           m.add(2);  // line 7
+           m.add("5"); //line 8
+           System.out.println(m.get());
+	}
+}
+ 
+
+2
+5
+Compile time error at line 8  <<<------------<<<
+Compile time error at line 7
+Compile time error at line 7 and 8
+Option Compile time error at line 8 is Correct
+///////////////////////////////////////
+***************************************
+GENERIC METHODS
+Q1 of 1
+What is the output of this code? 
+
+class Box<T> {
+	   private T t;
+	
+	   public void set(T t) { this.t = t; }
+	   public T get() { return t; }
+	}
+public class TestGenerics {
+	
+	public static void add(Box<Number> input){
+		System.out.println("OK");
+	}
+	
+	public static void main(String args[])throws Exception{
+		Box<Number> box = new Box<Number>();
+		add(box);
+		Box<Integer> box1 = new Box<Integer>(); 
+		add(box1); //line 17
+	}
+}
+ 
+
+OK
+OK OK
+Compile error at line 17  <<<------------<<<
+Runtime error at line 17
+Option Compile error at line 17 is Correct
+///////////////////////////////////////
+***************************************
+WILDCARDS
+Q1 of 1
+We have defined three classes Shape, CustomRectangle and CustomCircle as shown below. Develop a method drawShape() in ShapeUtil class. This method has to take only Shape and its child class as the parameter. What should be the definition of the drawShape() method?
+
+abstract class Shape{
+	abstract void draw();
+}
+class CustomRectangle extends Shape{
+	void draw(){System.out.println("drawing rectangle");}
+}
+class CustomCircle extends Shape{
+	void draw(){System.out.println("drawing circle");}
+}
+ 
+
+public static <T extends Shape> void drawShape(T input)  <<<------------<<<
+public static <T super Shape> void drawShape(T input)
+public static <T super CustomCircle> void drawShape(T input)
+public static <T super CustomRectangle> void drawShape(T input)
+Option public static <T extends Shape> void drawShape(T input) is Correct
+///////////////////////////////////////
+***************************************
+LIST-COLLECTIONS
+Which of the following are advantages of Collection when compared to array? (Choose 3 options).
+
+can grow or shrink dynamically
+built-in algorithm for sorting and searching  <<<------------<<<
+prone to memory wastage
+addition and deletion of element in a given position is easier  V
+can hold primitive data type as is
+Option can grow or shrink dynamically is Correct
+
+Option built-in algorithm for sorting and searching is Correct
+
+Option addition and deletion of element in a given position is easier is Correct
+
+Q2 of 4
+Consider the following code snippet:
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class ListTester {
+	public static void main(String[] args) {
+		List<String> testList = new ArrayList<>();
+		testList.add(new String("hello"));
+		testList.add(new Integer(12));
+        }
+}
+ 
+
+Compilation Error
+Program will get executed successfully
+Runtime Exception
+None of the above
+Option Compilation Error is Correct
+
+Q3 of 4
+Consider the following code snippet given below. What will be the output?
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class ListTester {
+	public static void main(String[] args) {
+		List<String> nameList = new ArrayList<>();
+		nameList.add(1,"One");
+		nameList.add(2,"Two");
+		for(String no:nameList){
+			System.out.println(no);
+		}
+	}
+}
+ 
+
+Compilation Error
+One Two
+Runtime Exception
+None of the above
+Option Runtime Exception is Correct
+
+Q4 of 4
+Consider the following code snippet as given below. What is the output ?
+
+import java.util.LinkedList;
+
+class Employee {
+    private int empId;
+    public Employee(int empId) {
+        this.empId = empId;
+    }
+}
+public class ListTester {
+    public static void main(String[] args) {
+        LinkedList <Employee> firstList = new LinkedList<>(); 
+        LinkedList <Employee> secondList = new LinkedList<>(); 
+        firstList.addFirst(new Employee(2034));
+        secondList.addFirst(new Employee(2034));
+        if(firstList.contains(secondList.getFirst())){
+             System.out.println("Values are Same"); 
+        }else{ 
+             System.out.println("Values are Not Same");
+        }
+    }
+}
+ 
+
+Compilation Error
+Values are Same
+Runtime Exception
+Values are Not Same
+Option Values are Not Same is Correct
+///////////////////////////////////////
+***************************************
+SET-COLLECTIONS
+Q1 of 1
+For the below program what will be the output?
+
+import java.util.*;
+public class SetTester {
+	public static void main(String[] args) {
+		Set<String> testSet = new TreeSet<>();
+		testSet.add("Infosys");
+		testSet.add("Google");
+		testSet.add("Ibm");
+		testSet.add("Yahoo");		
+		testSet.add("Infosys");		
+		System.out.println("Size of the set: " + testSet.size());
+	}
+}
+Size of Set: 4
+Size of Set: 5
+Compilation error
+Runtime Exception
+Option Size of Set: 4 is Correct
+///////////////////////////////////////
+***************************************
+MAP-COLLECTIONS
+Q1 of 1
+What is the output of this program?
+
+import java.util.*;
+public class MapTester {
+	public static void main(String[] args) {
+		Map<Integer,String> testMap = new HashMap<>();
+		testMap.put(1,"Infosys");
+		testMap.put(2,"Google");
+		testMap.put(3,"IBM");
+		testMap.put(2,"Yahoo");
+		String value = testMap.get(2);
+		System.out.println("Value is :" + value);
+	}
+}
+ 
+
+Value is : Google
+Value is : Yahoo
+Compilation error
+Runtime Exception
+Option Value is : Yahoo is Correct
+///////////////////////////////////////
+***************************************
+CHOOSING RIGHT COLLECTIONS
+Q1 of 1
+Ana is having a requirement, where she needs a method that processes the input from a file. The method has to read all the phone numbers from the file and store it in a collection, by eliminating the duplicates. Which collection suits to her requirement?
+
+List
+Set
+TreeMap
+HashMap
+Option Set is Correct
+///////////////////////////////////////
+***************************************
+COMPARING AND SORTING
+Q1 of 2
+For the below program what will be the output?
+
+public class Student implements Comparable<Student> { 
+     private int studentId; 
+     public Student(int studentId) {
+         this.studentId = studentId; 
+     } 
+     @Override 
+     public int compareTo(Student student) {
+         return this.studentId- student.studentId; 
+     } 
+     @Override public String toString() {
+         return " " + studentId ; 
+     } 
+}
+import java.util.List; 
+import java.util.ArrayList; 
+
+public class ListTester {
+     public static void main(String[] args) {
+         List <Student> studentLst = new ArrayList<>();          
+         Student stud1 = new Student(1204);         
+         Student stud2 = new Student(1201);  
+         Student stud3 = new Student(1202);  
+         studentLst.add(stud1);  
+         studentLst.add(stud2);  
+         studentLst.add(stud3);  
+         for(Student stud : studentLst){    
+             System.out.println(stud);
+         }
+     }    
+}
+ 
+
+1204 1201 1202
+1201 1202 1204
+Compilation error
+Runtime Exception
+Option 1204 1201 1202 is Correct
+
+Q2 of 2
+Consider a class Faculty having attributes salary, name, and age. Management needs three different reports in which Faculty is sorted by salary, name and age attributes respectively. In order to achieve this using Collection, we should
+
+Define three separate classes each implementing Comparator interface and overriding compare() method to implement sort by salary, name and age respectively in each class.
+A single class implementing Comparator interface having three compare() method to sort by salary, name and age respectively should be created.
+Faculty class should implement Comparator interface and override compare() method
+Faculty class should implement Comparable interface and override compareTo() method.
+Option Define three separate classes each implementing Comparator interface and overriding compare() method to implement sort by salary, name and age respectively in each class. is Correct
+///////////////////////////////////////
+***************************************
+REGULAR EXPRESSIONS
+Q1 of 1
+Consider a scenario where a Java program needs to add the article 'a' or 'an' based on the input. For example, if the input is
+
+ "book". "A" should be inserted.
+
+"apple". "An" should be inserted.
+
+What should be the regular expression used for this scenario using the Character class to check for vowels?
+
+[aeiou].*
+[a][e][i][o][u]
+[aeiou]
+[a,e,i,o,u]
+Option [aeiou].* is Correct
+///////////////////////////////////////
+***************************************
+QUANTIFIERS
+Q1 of 2
+An elementary school teacher wants a list of three letter words to teach her students. So valid words are cat, Cap, HEN, etc. What should be the regular expression used for this scenario?
+
+[Aa-Zz]{3}
+[a-zA-Z]{3}
+[abc][ABC]
+[A-Z][a-z]{3}
+Option [a-zA-Z]{3} is Correct
+
+Q2 of 2
+There is a requirement to check in a document the occurrence of “I lost my wallet”. Instead of a wallet, it could be a car/pencil/pen/dog or any other word. In regex what should wallet be replaced with?
+
+\\w+
+\\W+
+w+
+W+
+Option \\w+ is Correct
+///////////////////////////////////////
+***************************************
+REGEX API
+Q1 of 2
+Executing the following code with input as "123" will
+
+public boolean validate(String input){
+	Pattern format = Pattern.compile("\\D{3}");
+	Matcher correctMatch = format.matcher(input);
+	boolean isValid = correctMatch.matches();
+	return isValid;
+}
+ 
+
+return true
+return false
+lead to run-time exception
+lead to compile-time exception
+Option return false is Correct
+
+Q2 of 2
+Executing the following code with input as "123" will
+
+public boolean validate(String input){
+	Pattern format = Pattern.compile("\w{3}");
+	Matcher correctMatch = format.matcher(input);
+	boolean isValid = correctMatch.matches();
+	return isValid;
+}
+ 
+
+return true
+return false
+lead to run-time exception
+lead to compile-time error
+Option lead to compile-time error is Correct
+///////////////////////////////////////
+***************************************
+IO STREAMS
+Q1 of 1
+The commonly used System.out is of type
+
+DataOutputStream
+InputStream
+PrintStream
+OutputStreamWriter
+Option PrintStream is Correct
+///////////////////////////////////////
+***************************************
+BYTE STREAMS
+Q1 of 2
+The output of this program will be 
+
+import java.io.*;
+public class FileStream {
+	public static void main(String args[]) throws Exception {
+		FileOutputStream outFile = new FileOutputStream("output.txt");
+		String data = "Hello there!";
+		byte bArray[] = data.getBytes();
+		outFile.write(bArray);
+		outFile.close();
+		
+		FileInputStream inFile = new FileInputStream("output.txt");
+		int i = inFile.read();
+		System.out.println((char)i);
+		inFile.close();	
+	}
+}
+ 
+
+ 
+
+Hello there!
+Hello
+H
+Hello there
+Option H is Correct
+
+Q2 of 2
+Consider below code:
+
+public class FileInputStreamTester {
+    public static void main(String[] args) {
+         try{    
+             FileInputStream fis = new FileInputStream("resources/text.txt");
+             int i = fis.read();
+             System.out.println(i);
+         } catch (IOException ioe) {
+             System.out.println("There is an error occurred.");
+         }
+    }
+}
+Assume that the file “text.txt” is empty.
+
+What will be the output when the above code is executed?
+
+0
+-1
+IOException
+null
+Option -1 is Correct
+///////////////////////////////////////
+***************************************
+BUFFERED STREAMS
+Q1 of 2
+What is the output of this program if the input given is “abc’def/’egh”?
+
+import java.io.*;
+public class FileStream {
+	public static void main(String args[]) throws Exception {
+		char c;
+		BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
+		do{
+			c = (char)obj.read();
+			System.out.print(c);
+		}while(c != '\'');	
+	}
+}
+ 
+
+abc'
+abcdef/’
+abc’def/’egh
+abcqfghq
+Option abc' is Correct
+
+Q2 of 2
+Which of the following can be used to improve performance while reading or writing from a file?
+
+i)
+
+FileInputStream fis = new FileInputStream("resources/text.txt");
+ii)
+
+BufferedInputStream bis = new BufferedInputStream(new FileInputStream("read/text.txt"));
+iii)
+
+FileOutputStream outFile = new FileOutputStream("output.txt");
+iv)
+
+BufferedOutputStream bis = new BufferedOutputStream(new FileOutputStream("output.txt"));
+ 
+
+i and ii
+only i
+i and iii
+ii and iv
+Option ii and iv is Correct
+///////////////////////////////////////
+***************************************
+TRY-WITH-RESOURCES
+Q1 of 1
+What is the output of this code?
+
+public class BasicResource  {
+	public int read(){
+		//read implementation
+		return 0;
+	}
+	
+	public void close(){
+		//close implementation
+	}
+}
+import java.io.*;
+public class FileStream {
+	public static void main(String args[]) throws Exception {
+		try (BasicResource is = new BasicResource()) {
+			is.read();
+		} catch(Exception e) {
+			//code
+		} finally {
+			//code
+		}
+	}
+}
+ 
+
+Compilation error
+Runtime error
+Code will get executed successfully
+None of the above
+Option Compilation error is Correct
+///////////////////////////////////////
+***************************************
+FILE HANDLER
+Q1 of 1
+When a File object is constructed as shown below, which of the below statement is true?
+
+File objFile = new File("C:\doc\Readme.doc")
+ 
+
+objFile is a handle to a file or directory which might not actually exist.
+If Readme.doc file already exists it is not created; otherwise gets created
+The objFile contains all the data of the file Readme.doc in the memory as soon as it is constructed.
+This statement certainly will create a new file in the name Readme.doc and make it get pointed by objFile
+Option objFile is a handle to a file or directory which might not actually exist. is Correct
+///////////////////////////////////////
+***************************************
+RANDOM ACCESS FILES
+Q1 of 2
+Which of the following is incorrect about the RandomAccessFile class?
+
+It behaves like an array of bytes.
+It can be used to both read and write bytes.
+It can allow reading bytes at a particular position.
+It cannot not read Java primitive types
+Option It cannot not read Java primitive types is Correct
+
+Q2 of 2
+The output of the program will be 
+
+import java.io.*;
+public class FileStream {
+	public static void main(String args[]) throws Exception {
+		RandomAccessFile randomFile = new RandomAccessFile("output.txt", "r");
+		randomFile.seek(0); //line 5
+		randomFile.writeBytes("Test"); //line 6
+		System.out.println("Current position:" + randomFile.getFilePointer());
+		randomFile.close();
+	}
+}
+ 
+
+IOException at Line 5
+IOException at Line 6
+Current position:4
+Current position:1004
+Option IOException at Line 6 is Correct
+///////////////////////////////////////
+***************************************
+SERIALIZATION
+Q1 of 2
+For writing an object to stream the code is
+
+a.    FileInputStream outFile = new FileInputStream("OutputData.txt");
+	ObjectInputStream objStream = new ObjectInputStream(outFile);		
+b.	FileInputStream outFile = new FileInputStream("OutputData.txt");
+	ObjectOutputStream objStream = new ObjectOutputStream(outFile);
+c.	FileOutputStream outFile = new FileOutputStream("OutputData.txt");
+	ObjectInputStream objStream = new ObjectInputStream(outFile);
+d. 	FileOutputStream outFile = new FileOutputStream("OutputData.txt");
+	ObjectOutputStream objStream = new ObjectOutputStream(outFile);
+ 
+
+a
+b
+c
+d
+Option d is Correct
+
+Q2 of 2
+What is the output expected out of the following code?
+
+import java.io.Serializable;
+public class Account implements Serializable{
+	private String accountName;
+	private transient String accountNo;
+	public String bankName  ;
+	
+	public Account(String accountName, String accountNo) {
+		this.accountName = accountName;
+		this.accountNo = accountNo;
+		bankName = "BankIndia" ;
+	}
+	
+	@Override
+	public String toString() {
+		return "Account [accountName=" + accountName + ", accountNo=" + accountNo + 
+				", bankName=" + bankName +"]";
+	}
+}
+import java.io.*;
+public class FileStream {
+	public static void main(String args[]) throws Exception {
+	   Account account = new Account("FinanceIndia","20345678");
+	   ObjectOutputStream objOutStream = new ObjectOutputStream(
+	                     new FileOutputStream("account.dat"));
+	   objOutStream.writeObject(account);
+	   ObjectInputStream objInStream = new ObjectInputStream(
+		                 new FileInputStream("account.dat"));
+	   Account accountRead = (Account )objInStream.readObject();
+	   System.out.println(accountRead);
+	   objOutStream.close();
+	   objInStream.close();
+	}
+}
+ 
+
+Account [accountName=FinanceIndia, accountNo=null, bankName=null]
+Account [accountName=FinanceIndia, accountNo=20345678, bankName=BankIndia]
+Account [accountName=null, accountNo=null, bankName=BankIndia]
+Account [accountName=FinanceIndia, accountNo=null, bankName=BankIndia]
+Option Account [accountName=FinanceIndia, accountNo=null, bankName=BankIndia] is Correct
+///////////////////////////////////////
+***************************************
+JDBC DRIVER
+Q1 of 1
+A Retail Grocery Online Application currently accesses data from Oracle Database for perishable products and the DB2 database for non-perishable products. Which Type of Driver is ideal to be used in this scenario?
+
+Type 1
+Type 2
+Type 3
+Type 4
+Option Type 3 is Correct
+///////////////////////////////////////
+***************************************
+DATABASE CONNECTION
+Q1 of 1
+Which of the following method can be used for registering a database driver in JDBC?
+
+ 
+
+A .DriverManager.registerDriver()
+B. Class.forName()
+C. DriverManager.getConnection()
+Both A and B
+Option Both A and B is Correct
+///////////////////////////////////////
+***************************************
+DATABASE OPERATION
+Q1 of 2
+Mark needs to add new courses to the Course table. He uses Statement Interface. Which method of the Statement should be called to execute this?
+
+    // load the driver
+    Class.forName("oracle.jdbc.driver.OracleDriver");
+    // Get the connection
+    conn = DriverManager.getConnection(URL, USER, PWD);
+    // get the statement
+    Statement stmt = conn.createStatement();
+    String sql = "insert into course (5, Java);
+ 
+
+A. stmt.executeQuery(sql)
+B .stmt.executeUpdate(sql)
+C. Either A or B
+D. None of the above
+Option B .stmt.executeUpdate(sql) is Correct
+
+Q2 of 2
+For executing the stored procedure “registerStudent” which does not have any parameter, which of the following code snippet is used? Assume Connection is obtained and is stored in local variable conn.
+
+a. Statement stmt = conn.createStatement(); 
+   stmt.execute("registerStudent");
+b. CallableStatement callStmt = conn.prepareCall("call registerStudent");
+   callStmt.execute();
+c. StoredProcedureStatement spStmt = conn.createStoredProcedure("registerStudent");
+   spStmt.execute()
+d. PreparedStatement preStmt = conn.prepareStatement("registerStudent");
+   preStmt.execute()
+ 
+
+a
+b
+c
+d
+Option b is Correct
+///////////////////////////////////////
+***************************************
+PROCESSING RESULTS
+Q1 of 2
+Which of the following will not get data from the first column of ResultSet rs, returned from executing following SQL statement  “select first_name, last_name from students”?
+
+rs.getString(0)
+rs.getString("first_name")
+rs.getString(1)
+All will get data correctly
+Option rs.getString(0) is Correct
+
+Q2 of 2
+For an online course offered by EduFord University the maximum number of students who can register is 20. During the new registration process data of registered students is fetched from reg_student table based on course_id using the executeQuery() method. The type of ResultSet which is required for this requirement is
+
+TYPE_FORWARD_ONLY
+TYPE_SCROLL_INSENSITIVE
+TYPE_SCROLL_SENSITIVE
+Option TYPE_SCROLL_SENSITIVE is Correct
+///////////////////////////////////////
+***************************************
+TRANSACTIONS
+Q1 of 1
+In the below program if an exception gets raised at line no 3 then the database state will be
+
+import java.sql.*;
+public class JDBCTest {
+	public static void main(String[] args) {
+		String URL = "jdbc:oracle:thin:kechmachine:1521:eduford";
+		String USER = "mark";
+		String PWD = "password";
+		Connection conn = null;
+		PreparedStatement preStmt = null;
+		try {
+			// load the driver
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// Get the connection
+			conn = DriverManager.getConnection(URL, USER, PWD);
+			// get the statement
+			preStmt = conn.prepareStatement("delete from course where course_id=5");//line1
+			preStmt.execute();
+			conn.commit(); 
+			preStmt = conn.prepareStatement("delete from course_detail where course_id=5");//line 2
+			preStmt.execute();
+			preStmt.close(); 
+			conn.close();//line 3
+		}  catch (SQLException  | ClassNotFoundException ex) {
+			System.out.println("Exception occured");
+			try {
+				conn.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
+ 
+
+course_id = 5 is deleted from both course and course_detail tables
+course_id = 5 is deleted only from course table
+course_id = 5 is deleted only from course_detail table
+course_id = 5 is not deleted from both course and course_detail tables
+Option course_id = 5 is deleted from both course and course_detail tables is Correct
+///////////////////////////////////////
+***************************************
+WORKING WITH THREADS
+Q1 of 2
+Which of the following is not true for threads?
+
+Each thread has to be contained in a separate executable (exe)
+Threads share heap area, files and memory
+Every thread has a separate program counter, local variables and stack area
+Threads allow for multiple activities within a process
+Option Each thread has to be contained in a separate executable (exe) is Correct
+
+Q2 of 2
+Consider the code snippet given below. How many threads are active at line numbers 1, 2 and 3 respectively?
+
+public class MyThreadDemo implements Runnable {
+	public void run() {
+		System.out.println("Thread is running");
+	}
+
+	public static void main(String args[]) {
+		MyThreadDemo obj = new MyThreadDemo();
+		Thread threadObj = new Thread(obj); // 1
+		threadObj.start(); // 2
+		threadObj.run();// 3
+	}
+}
+ 
+
+Code will provide a run time error
+Code will provide an error on compilation
+main thread,2, 3 respectively
+main thread,2 respectively
+Option main thread,2 respectively is Correct
+///////////////////////////////////////
+***************************************
+THREAD METHODS
+Q1 of 1
+What will be expected when the following snippet executes?
+
+public class MyThreadDemo extends Thread {
+	public static void main(String args[]) {
+		Thread t = Thread.currentThread();
+		System.out.println("main thread.");
+		try {
+			t.join();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}
+ 
+
+Program will display main thread and will not terminate
+Program will display main thread and then terminates
+Program will display main thread and then it will throw an exception
+Program will give compilation error
+Option Program will display main thread and will not terminate is Correct
+///////////////////////////////////////
+***************************************
+THREAD LIFE CYCLE
+Q1 of 1
+What will be expected when the following snippet executes?
+
+public class TestOne {
+	public static void main(String[] args) throws Exception{
+		Thread.sleep(3000);
+		System.out.println("sleep");
+	}
+}
+ 
+
+Compilation fails
+An exception is thrown at runtime
+The code executes normally and prints sleep
+The code executes normally, but nothing is printed
+Option The code executes normally and prints sleep is Correct
+///////////////////////////////////////
+***************************************
+THREAD SCHEDULING AND PRIORITY
+Q1 of 1
+What can be expected when the following code gets executed?
+
+public class MyThreadDemo extends Thread {
+	public void run(){
+		System.out.println("Thread is running");
+	}
+	public static void main(String args[]) {
+            MyThreadDemo obj= new MyThreadDemo();
+            obj.setPriority(15);
+            obj.start();
+	}
+}
+ 
+
+Compile Time Error: Thread Priority can not be more than MAX_PRIORITY
+Compile Time Error: Code to set the priority should be included in try catch
+Runtime Exception
+Prints “Thread is running”
+Option Runtime Exception is Correct
+///////////////////////////////////////
+***************************************
+THREAD SYNCHRONIZATION
+Q1 of 1
+Predict the correct option after having a look at the following code
+
+public class TestThread extends Thread {
+	private synchronized static int x;
+
+	public static synchronized void incrementX() {
+		int counter = x;
+		counter++;
+		x = counter;
+		System.out.println("Here x is" + x);
+	}
+
+	public void run() {
+		incrementX();
+	}
+}
+ 
+
+The class “TestThread” is thread safe. Access to the static instance “x” is thread safe in the static synchronized method.
+Compilation Error: static methods can not be made synchronized
+Compilation Error as synchronized modifier cannot be used for the field "x"
+Run time exception
+Option Compilation Error as synchronized modifier cannot be used for the field "x" is Correct
+///////////////////////////////////////
+***************************************
+INTER-THREAD COMMUNICATION
+Q1 of 1
+Given:
+
+thread1 (instance of runnable )and obj (instance of Object class) are public references available to many other threads. thread1 is currently executing wait().
+
+From another thread, which statement is the most reliable way to ensure that thread1 will stop executing wait()?
+
+thread1.notify();
+obj.notify();
+thread1.notifyAll();
+obj.notifyAll();
+Option obj.notifyAll(); is Correct
+///////////////////////////////////////
+***************************************
+DAEMON THREADS
+Q1 of 1
+What can be expected when the following code gets executed?
+
+public class MyThreadDemo extends Thread {
+	public void run() {
+		System.out.println("Thread is running");
+	}
+
+	public static void main(String args[]) {
+		MyThreadDemo obj = new MyThreadDemo();
+		obj.setPriority(7);// 1
+		obj.start();// 2
+		obj.setDaemon(true);// 3
+	}
+}
+ 
+
+Prints “Thread is running” and program gets into infinite loop as it’s a daemon thread
+Prints “Thread is running” and finishes execution
+Compilation Error
+Prints “Thread is running” and throws Runtime Exception
+Option Prints “Thread is running” and throws Runtime Exception is Correct
+///////////////////////////////////////
+***************************************
+EXECUTOR FRAMEWORK
+Q1 of 1
+Consider the code snippet given below. Choose the correct statement from the options given below:
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+class UploadResult extends Thread {
+	@Override
+	public void run() {
+		//code for uploading result
+		System.out.println("Upload Successful");
+	}
+}
+
+public class ExecuteUploadResultQ1 {
+	public static void main (String[] args){
+		ExecutorService exService = Executors.newSingleThreadExecutor();//Line 1
+		UploadResult uploadRunnable1 = new UploadResult();
+		UploadResult uploadRunnable2 = new UploadResult();
+		exService.execute(uploadRunnable1);//Line 2
+		exService.execute(uploadRunnable2);//Line 3
+		exService.shutdown();
+	}
+
+}
+ 
+
+Compilation Error @ Line 3
+Compilation Error @ Line 2
+Runtime Exception @ Line 3
+Executes fine and prints the result of run() method two times
+Option Executes fine and prints the result of run() method two times is Correct
+///////////////////////////////////////
+***************************************
+THREAD POOL
+Q1 of 1
+Consider the code snippet given below. Choose the correct statement from the options given below:
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+class UploadResult extends Thread {
+	@Override
+	public void run() {
+		//code for uploading result
+		System.out.println("Upload Successful");
+	}
+}
+
+public class ExecuteUploadResultQ2 {
+	public static void main (String[] args){
+		ExecutorService exService = Executors.newFixedThreadPool(5); //1
+		UploadResult uploadRunnable1 = new UploadResult();
+		UploadResult uploadRunnable2 = new UploadResult();
+		exService.execute(uploadRunnable1);
+		exService.execute(uploadRunnable2);
+		exService.shutdown();
+	}
+
+}
+ 
+
+Line 1 and 2 compile fine, but 3 gives compilation error
+Line 1 creates a thread pool with 5 threads executing tasks. Line 2 and 3 will pick up same thread from the pool to execute the thread instance of class UploadResult
+Line 1 creates a thread pool with 5 threads executing tasks. Line 2 and 3 will pick up one (not necessarily same) thread from the pool to execute the thread instance of class UploadResult
+Runtime Exception
+Option Line 1 creates a thread pool with 5 threads executing tasks. Line 2 and 3 will pick up one (not necessarily same) thread from the pool to execute the thread instance of class UploadResult is Correct
+///////////////////////////////////////
+***************************************
+COLLABLE AND FUTURE
+Q1 of 1
+Consider the code snippets given below. Choose the correct statement from the options given below:
+
+import java.util.concurrent.Callable;
+
+public class UploadResultCall implements Callable<Boolean> {
+	private int threadNo;
+	public UploadResultCall(int number) {
+		threadNo = number;
+	}
+	@Override
+	public Boolean call() throws Exception {
+		Boolean retValue = processResult();
+		if (retValue){
+			System.out.println("Upload Successful!"); 
+		}else{
+			System.out.println("Upload failed!");
+		}
+		return retValue;
+	}
+	private Boolean processResult(){
+		//dummy implementation for processing
+		try{
+			Thread.sleep(2000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		//dummy implementation for return value
+		if(threadNo % 2 ==0 )
+			return Boolean.TRUE;
+		else
+			return Boolean.FALSE;
+	}
+}
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.List;
+import java.util.ArrayList;
+
+
+public class ExecuteUploadResult {
+	public static void main (String[] args){
+		ExecutorService exService = Executors.newSingleThreadExecutor();//1
+		UploadResultCall uploadRunnable1 = new UploadResultCall(10);
+		UploadResultCall uploadRunnable2 = new UploadResultCall(11);
+		List<UploadResultCall> tasks = new ArrayList<>();
+		tasks.add(uploadRunnable1);//2
+		tasks.add(uploadRunnable2);//3
+		try {
+			exService.invokeAny(tasks); //4
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		}
+		exService.shutdown();
+	}
+
+}
+ 
+
+ 
+
+Compilation Error @ Line 3
+Compilation Error @ Line 4
+Runtime Exception @ Line 4
+Code compiles fine and executes fine, though the output could be from any of the Callable tasks uploadCallable1 and uploadCallable2.
+Option Code compiles fine and executes fine, though the output could b
+///////////////////////////////////////
+***************************************
+LOCKS
+Q1 of 1
+Consider the code snippet given below. Choose the correct statement from the options given below
+
+import java.util.concurrent.locks.Lock;
+
+public class Counter {
+	private Lock lock;
+	private int count;
+	public Counter(Lock obj){
+		lock = obj;
+	}
+	public int increment(){
+		lock.lock();
+		count++;
+		lock.unlock();
+		return count;
+	}
+}
+public class LockExample implements Runnable {
+	private String threadName;
+	private Counter ctr;
+	public LockExample (Counter obj, String name){
+		ctr = obj;
+		threadName = name;
+	}
+	@Override
+	public void run() {
+		int newVal = ctr.increment();
+		System.out.println("counter value in"+ threadName + " is:" + newVal);
+	}
+}
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class TestLock {
+
+	public static void main(String[] args) {
+		Counter objCounter = new Counter(new ReentrantLock());
+		ExecutorService exService = Executors.newFixedThreadPool(2);
+		LockExample lock1 = new LockExample(objCounter, "Thread1");
+		LockExample lock2 = new LockExample(objCounter, "Thread2");
+		exService.execute(lock1);
+		exService.execute(lock2);
+		exService.shutdown();
+	}
+}
+ 
+
+Compilation Error
+Run time Exception
+Method incrementCtr() must be made synchronized() before trying to increment Count as two threads are concurrently trying to execute
+Code compiles fine and executes fine, sets the counter to 2.
+Option Code compiles fine and executes fine, sets the counter to 2. is Correct
+///////////////////////////////////////
+***************************************
+SONAR LINT
+Q1 of 1
+Find the SonarLint issue in the below code snippet.
+
+public class Sample{
+
+    public static void main(String args[]){
+
+        int j=0;
+
+        for (int i = 0; i < 3; j++) { 
+
+            j=0/j;            
+
+            i++;
+
+        }
+
+    }
+
+} 
+
+ 
+
+"for" loop increment clauses should modify the loops' counters.
+Loops with at most one iteration should be refactored.
+Zero should not be a possible denominator
+There is no SonarLint issue.
+Option "for" loop increment clauses should modify the loops' counters. is Correct
+///////////////////////////////////////
+***************************************
+BEST PRACTICES
+Q1 of 4
+Which of the following statement is valid about the finally clause while using exceptions?
+
+Never allow exceptions to bubble out from the finally clause.
+Finally clause can have code that throws an exception.
+The finally clause should normally have a code that does not throw an exception.
+a and b
+b and c
+a and c
+All the above
+Option a and c is Correct
+
+Q2 of 4
+Which of the following is the correct way of handling exceptions?
+
+try{ 
+   //Some code
+}catch(Exception e){
+    logger.warn("Something Wrong!", e);
+    throw e;
+}
+try{ 
+   //Some code
+}catch(Exception e){
+    throw e;
+}
+ 
+
+Only a is correct
+Only b is correct
+Both a and b are correct
+Both a and b are incorrect
+Option Only b is correct is Correct
+
+Q3 of 4
+Which of the following statement is incorrect regarding the correct usage of Generics?
+
+Primitive data types can be used.
+Generic code can be considered type-safe only when all the unchecked warnings are removed.
+The scope of @SuppressWarnings should be minimal.
+only a is incorrect
+only b is incorrect
+only c is incorrect
+all the statements are incorrect
+Option only a is incorrect is Correct
+
+Q4 of 4
+Which of the following is correct code implementation based on JDBC best Practices?
+
+try {
+	connObj.setAutoCommit(true);
+	//Java Code
+}catch(Exception e) {
+	connObj.rollback();
+    //Exception handling Java Code
+}
+connObj.setAutoCommit(false);
+try {
+	//Java Code
+    connObj.commit();
+}catch(Exception e) {
+	connObj.rollback();
+	//Exception handling Java Code
+}finally {
+    connObj.close();
+}
+Assume the proper connection is established with the database.
+
+Only a is correct
+Only b is correct
+Both a and b are correct
+Both a and b are incorrect
+Option Only b is correct is Correct
+///////////////////////////////////////
+***************************************
+CUSTOM ANNOTATIONS
+Q1 of 3
+Code written below will  
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD)
+public @interface QuizAnnotation {
+
+}
+
+@QuizAnnotation
+public class Quiz {
+	void quizMethod() {
+
+	}
+}
+ 
+
+get executed properly
+throw warning
+throw compile-time error
+throw run-time exception
+Option throw compile-time error is Correct
+
+Q2 of 3
+Choose the correct statement for @DevelopedBy
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD)
+
+public @interface DevelopedBy 
+{
+	String developerName();
+}
+ 
+
+Is not a valid annotation
+Will not be available till run-time
+Frameworks can use reflection API to get this annotation details at run-time
+Will be available till run-time
+Option Will not be available till run-time is Correct
+
+Q3 of 3
+@Author is defined as shown. Which of the following is the correct statement?
+
+import java.lang.annotation.*;
+import java.lang.annotation.Target;
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Author
+{
+	String value();
+}
+@Author("Mark")
+class A{}
+class B extends A{}
+ 
+
+ 
+
+At runtime Author of Class A and Class B will be shown as Mark
+Compile time error will be generated as the correct usage of Annotation is @Author(value="Mark")
+At runtime Author of Class A will be shown as Mark whereas for Class B Author will be null
+At runtime Author will not be available for both the classes
+Option At runtime Author of Class A will be shown as Mark whereas for Class B Author will be null is Correct
+///////////////////////////////////////
+***************************************
